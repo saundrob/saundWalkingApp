@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/helpFragment1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000E01"
+    tools:context=".helpFragment1">
+
+    <TextView
+        android:id="@+id/helpTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thank you for trying Distance Tracker!\n\nAbout the app:\n\nDistance Tracker tracks your steps, distance, and calories burned daily.\n\nYou can see your distance traveled and other
+statistics in the History page.\n\nYou may also set a personal goal that the app will encourage you to reach.\n\nFor more info, contact developers.\n\nEnjoy walking and
+watching your progress!"
+        android:textColor="#4CAF50"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/close_button"
+        android:layout_width="110dp"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginTop="16dp"
+
+        android:backgroundTint="#194CAF50"
+        android:text="CLOSE"
+        android:textColor="#4CAF50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/helpTxt" />
+
+</FrameLayout>
