@@ -14,12 +14,16 @@
         android:layout_height="wrap_content"
         android:text="Thank you for trying Distance Tracker!\n\nAbout the app:\n\nDistance Tracker tracks your steps, distance, and calories burned daily.\n\nYou can see your distance traveled and other
 statistics in the History page.\n\nYou may also set a personal goal that the app will encourage you to reach.\n\nFor more info, contact developers.\n\nEnjoy walking and
-watching your progress!"
+watching your progress!\n\n\n\nALWAYS BE AWARE OF SURROUNDINGS"
         android:textColor="#4CAF50"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"/>
 
     <Button
         android:id="@+id/close_button"

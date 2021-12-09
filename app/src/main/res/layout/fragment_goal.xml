@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/goalFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000E01"
+    tools:context=".goalFragment"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="110dp"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom|left"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+
+        android:backgroundTint="#194CAF50"
+        android:text="BACK"
+        android:textColor="#4CAF50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/helpTxt" />
+
+    <Button
+        android:id="@+id/confirm_button"
+        android:layout_width="110dp"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginTop="32dp"
+
+        android:layout_marginRight="8dp"
+        android:backgroundTint="#194CAF50"
+        android:text="CONFIRM"
+        android:textColor="#4CAF50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/helpTxt" />
+
+    <TextView
+        android:id="@+id/enterGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your goal in steps:"
+        android:textColor="#4CAF50"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        />
+
+    <EditText
+        android:id="@+id/goalInput"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:layout_marginRight="8dp"
+        android:ems="10"
+        android:inputType="number"
+
+        android:maxLength="10"
+        android:selectAllOnFocus="true"
+        android:text="0000"
+        android:textColor="#4CAF50" />
+
+
+</FrameLayout>
