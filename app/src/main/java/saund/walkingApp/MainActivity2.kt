@@ -1,32 +1,39 @@
 package saund.walkingApp
 
-import android.content.ClipData
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import androidx.activity.viewModels
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import org.w3c.dom.Text
-import android.content.Intent
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
+import android.widget.Toast
 
 
-class MainActivity2 : AppCompatActivity(), View.OnClickListener {
+class MainActivity2 : AppCompatActivity(), View.OnClickListener, SensorEventListener, Communicator {
     //presetting stats vars to 0
     var steps = 0
     var calories = 0
     var distance = 0
+    var strStep: String = "0"
+
+    //sensor vars
+    var running = false
+    var sensorManager:SensorManager?=null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
-        //call the goal fragment data receiver
-        receiveData()
+        //start goalTxt Fragment
+        supportFragmentManager.beginTransaction().replace(R.id.goalTxtContainer, goalTxtContainer()).commit()
+
+        //sensor setup
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
         //add buttons from xml to main
         val help_btn = findViewById<Button>(R.id.help_button)
@@ -55,17 +62,53 @@ class MainActivity2 : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    //setting up intent function for goal fragment reception
-    internal fun receiveData(){
-        val goalTextHandler = findViewById<TextView>(R.id.goalTxt)
-        val goalProgressHandler = findViewById<TextView>(R.id.goalProgress)
-        if(intent.getStringExtra("key") != null) {
-            goalTextHandler.text = "Your goal today: " + intent.getStringExtra("key").toString().toInt() + " steps"
-            goalProgressHandler.text = "Steps until goal: " + (intent.getStringExtra("key").toString().toInt() - steps)
+    //close fragment function
+    internal fun closeGoalTxtFragment(){
+        supportFragmentManager.findFragmentById(R.id.goalTxtContainer)
+            ?.let { supportFragmentManager.beginTransaction().remove(it).commit() }
+    }
+
+    //sensor codes
+    override fun onResume() {
+        super.onResume()
+        running = true
+        var stepsSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
+        if(stepsSensor==null){
+            Toast.makeText(this, "No step sensor found!", Toast.LENGTH_SHORT).show()
+        }
+        else{
+            sensorManager?.registerListener(this, stepsSensor, SensorManager.SENSOR_DELAY_UI)
         }
     }
 
-    internal fun closeActivity(){
-        finish()
+    override fun onPause() {
+        super.onPause()
+        running = false
+        sensorManager?.unregisterListener(this)
+    }
+    //functions for motion sensors
+    override fun onSensorChanged(event: SensorEvent?) {
+        if(running){
+            val stepsCounter = findViewById<TextView>(R.id.stepsToday)
+
+            stepsCounter.text ="Steps: " + event!!.values[0]
+             strStep = event!!.values[0].toString()
+        }
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+        TODO("Not yet implemented")
+    }
+
+    //frag to frag data function
+    override fun passDataCom(editTextInput: String) {
+        val bundle = Bundle()
+        bundle.putString("message", editTextInput)
+        bundle.putString("message2", strStep)
+        val transaction = supportFragmentManager.beginTransaction()
+        var FragB = goalTxtContainer()
+        FragB.arguments = bundle
+        transaction.replace(R.id.goalTxtContainer, FragB)
+        transaction.commit()
     }
 }

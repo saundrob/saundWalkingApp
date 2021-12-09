@@ -91,34 +91,6 @@
         app:layout_constraintTop_toBottomOf="@+id/dailyStatsTxt" />
 
     <TextView
-        android:id="@+id/goalTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="350dp"
-        android:text="Your goal today: (not yet set)"
-        android:textAlignment="center"
-        android:textColor="#4CAF50"
-        android:textSize="18sp"
-        android:typeface="monospace"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caloriesToday" />
-
-    <TextView
-        android:id="@+id/goalProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Steps until goal: (goal not set)"
-        android:textAlignment="center"
-        android:textColor="#4CAF50"
-        android:textSize="18sp"
-        android:typeface="monospace"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goalTxt" />
-
-    <TextView
         android:id="@+id/caloriesToday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -147,6 +119,18 @@
         app:layout_constraintTop_toBottomOf="@+id/stepsToday" />
 
     <FrameLayout
+        android:id="@+id/goalTxtContainer"
+        android:layout_width="380dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="500dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <FrameLayout
         android:id="@+id/helpContainer1"
         android:layout_width="385dp"
         android:layout_height="580dp"
@@ -165,8 +149,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import org.w3c.dom.Text
 
@@ -16,6 +17,9 @@ import org.w3c.dom.Text
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
+//communicator varibale for frag to frag chatter
+private lateinit var communicator: Communicator
 
 /**
  * A simple [Fragment] subclass.
@@ -28,14 +32,12 @@ class goalFragment : Fragment(), View.OnClickListener {
     private var param2: String? = null
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
     }
 
     override fun onCreateView(
@@ -43,7 +45,14 @@ class goalFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_goal, container, false)
+        val v = inflater.inflate(R.layout.fragment_goal, container, false)
+        super.onViewCreated(v, savedInstanceState)
+
+        //communicator for cross fragment chatter
+        communicator = activity as Communicator
+
+
+        return v
     }
 
     companion object {
@@ -67,14 +76,13 @@ class goalFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         //getting buttons from xml
         val back_btn = getView()?.findViewById<Button>(R.id.back_button) as Button
         back_btn.setOnClickListener(this)
         val confirm_btn = getView()?.findViewById<Button>(R.id.confirm_button) as Button
         confirm_btn.setOnClickListener(this)
-
     }
+
     override fun onClick(View: View) {
         //setting button actions
         if(View.id==R.id.back_button){
@@ -84,14 +92,14 @@ class goalFragment : Fragment(), View.OnClickListener {
             //saving goal here
             val goalTyped = view?.findViewById<TextView>(R.id.goalInput)
             val goalOkay = goalTyped?.text
-            val intent = Intent(activity, MainActivity2::class.java)
-            intent.putExtra("key", (goalOkay).toString())
             if((goalOkay).toString().toInt() <= 10000000 && (goalOkay).toString().toInt() >= 1) {
-                //call function receive data here
-                (activity as MainActivity2).closeActivity()
-                startActivity(intent)
+                //close old goal fragment and pass data to open a new one
+                (activity as MainActivity2).closeGoalTxtFragment()
+                val str: String = goalOkay.toString()
+                communicator.passDataCom(str)
                 getActivity()?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit();
             }
+            //out of bounds exception keeps user in the keyboard
             else{
                 val goalTxtMsg = view?.findViewById<TextView>(R.id.enterGoal)
                 goalTxtMsg?.text = "Enter your goal in steps:\nRange: [1,10000000]"
