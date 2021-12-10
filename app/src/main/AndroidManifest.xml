@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="saund.walkingApp">
 
-    <uses-feature android:name="android.hardware.sensor.stepcounter" android:required="true"/>
-    <uses-feature android:name="android.hardware.sensor.stepdetector" android:required="true"/>
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SaundWalkingApp">
+        <activity
+            android:name=".sign_in_activity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity2"
             android:exported="true"

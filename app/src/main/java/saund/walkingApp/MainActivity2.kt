@@ -1,17 +1,16 @@
 package saund.walkingApp
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.TextView
+import android.content.Intent
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
-
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity2 : AppCompatActivity(), View.OnClickListener, SensorEventListener, Communicator {
     //presetting stats vars to 0
@@ -22,24 +21,26 @@ class MainActivity2 : AppCompatActivity(), View.OnClickListener, SensorEventList
 
     //sensor vars
     var running = false
-    var sensorManager:SensorManager?=null
-
+    var sensorManager: SensorManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
         //start goalTxt Fragment
-        supportFragmentManager.beginTransaction().replace(R.id.goalTxtContainer, goalTxtContainer()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.goalTxtContainer, goalTxtContainer())
+            .commit()
 
         //sensor setup
-        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        //sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
         //add buttons from xml to main
         val help_btn = findViewById<Button>(R.id.help_button)
         help_btn.setOnClickListener(this)
         val goal_btn = findViewById<Button>(R.id.goal_button)
         goal_btn.setOnClickListener(this)
+        val sign_in = findViewById<Button>(R.id.sign_in_button)
+        sign_in.setOnClickListener(this)
 
         //add text lines from xml to main
         val stepsCounter = findViewById<TextView>(R.id.stepsToday)
@@ -47,23 +48,36 @@ class MainActivity2 : AppCompatActivity(), View.OnClickListener, SensorEventList
         val calorieCounter = findViewById<TextView>(R.id.caloriesToday)
 
         //preset the stats to 0
-        stepsCounter.text="Steps: " + steps
+        stepsCounter.text = "Steps: " + steps
         distanceCounter.text = "Distance: " + distance + " meters"
         calorieCounter.text = "Approx. calories burned: " + calories
     }
 
+
+
+
     //set button actions
-    override fun onClick(View: View){
-        if(View.id==R.id.help_button){
-            supportFragmentManager.beginTransaction().replace(R.id.helpContainer1, helpFragment1()).commit()
+    override fun onClick(View: View) {
+
+        if (View.id == R.id.help_button) {
+            supportFragmentManager.beginTransaction().replace(R.id.helpContainer1, helpFragment1())
+                .commit()
         }
-        if(View.id==R.id.goal_button){
-            supportFragmentManager.beginTransaction().replace(R.id.goalContainer, goalFragment()).commit()
+        if (View.id == R.id.goal_button) {
+            supportFragmentManager.beginTransaction().replace(R.id.goalContainer, goalFragment())
+                .commit()
+        }
+        if(View.id == R.id.sign_in_button){
+            //start sign in activity
+            val intent = Intent (this, sign_in_activity::class.java).apply{
+                putExtra("yo", "yep")
+            }
+            startActivity(intent)
         }
     }
 
     //close fragment function
-    internal fun closeGoalTxtFragment(){
+    internal fun closeGoalTxtFragment() {
         supportFragmentManager.findFragmentById(R.id.goalTxtContainer)
             ?.let { supportFragmentManager.beginTransaction().remove(it).commit() }
     }
@@ -72,7 +86,7 @@ class MainActivity2 : AppCompatActivity(), View.OnClickListener, SensorEventList
     override fun onResume() {
         super.onResume()
         running = true
-        var stepsSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
+        var stepsSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
         if(stepsSensor==null){
             Toast.makeText(this, "No step sensor found!", Toast.LENGTH_SHORT).show()
         }
@@ -88,11 +102,11 @@ class MainActivity2 : AppCompatActivity(), View.OnClickListener, SensorEventList
     }
     //functions for motion sensors
     override fun onSensorChanged(event: SensorEvent?) {
-        if(running){
+        if (running) {
             val stepsCounter = findViewById<TextView>(R.id.stepsToday)
-
-            stepsCounter.text ="Steps: " + event!!.values[0]
-             strStep = event!!.values[0].toString()
+            //stepsCounter.text = "Steps: " + event!!.values[0]
+            stepsCounter.text = "yay"
+            strStep = event!!.values[0].toString()
         }
     }
 
@@ -111,4 +125,5 @@ class MainActivity2 : AppCompatActivity(), View.OnClickListener, SensorEventList
         transaction.replace(R.id.goalTxtContainer, FragB)
         transaction.commit()
     }
+
 }

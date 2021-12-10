@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
@@ -36,14 +37,14 @@
         app:layout_constraintTop_toBottomOf="@+id/welcome_msg" />
 
     <Button
-        android:id="@+id/history_button"
+        android:id="@+id/sign_in_button"
         android:layout_width="110dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#194CAF50"
-        android:text="HISTORY"
+        android:text="SIGN IN"
         android:textColor="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/goal_button"
@@ -68,13 +69,13 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#194CAF50"
-        android:text="HELP"
-        android:textColor="#4CAF50"
-
         android:onClick="this"
-        tools:ignore="OnClick"
+        android:text="HELP"
+
+        android:textColor="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="OnClick" />
 
     <TextView
         android:id="@+id/stepsToday"
@@ -149,6 +150,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

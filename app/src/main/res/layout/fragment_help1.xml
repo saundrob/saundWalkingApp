@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Thank you for trying Distance Tracker!\n\nAbout the app:\n\nDistance Tracker tracks your steps, distance, and calories burned daily.\n\nYou can see your distance traveled and other
-statistics in the History page.\n\nYou may also set a personal goal that the app will encourage you to reach.\n\nFor more info, contact developers.\n\nEnjoy walking and
+statistics in Google Fit API.\n\nYou may also set a personal goal that the app will encourage you to reach.\n\nFor more info, contact developers.\n\nEnjoy walking and
 watching your progress!\n\n\n\nALWAYS BE AWARE OF SURROUNDINGS"
         android:textColor="#4CAF50"
         android:textSize="20sp"
