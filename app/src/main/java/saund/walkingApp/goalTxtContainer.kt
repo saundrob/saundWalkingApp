@@ -21,7 +21,7 @@ class goalTxtContainer : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private var goal: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +29,17 @@ class goalTxtContainer : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+    }
+
+    fun updateToGo(steps: Int){
+        val goalProgressHandler = view?.findViewById<TextView>(R.id.goalProgress)
+        var newToGo: Int = goal - steps
+        if(newToGo<0){
+            newToGo = 0
+        }
+        if(newToGo!=0){
+        goalProgressHandler?.text = "Steps until goal: " + newToGo}
+        if(newToGo==0){ goalProgressHandler?.text = "CONGRATULATIONS!!! You've reached your goal, please have a rest. "}
     }
 
 
@@ -42,7 +53,12 @@ class goalTxtContainer : Fragment() {
             val strIntSteps = arguments?.getString("message2")
             val planInt = strIntGoal?.toInt()
             val soFarInt = strIntSteps?.toInt()
-            val toGo: Int = soFarInt?.let { planInt?.minus(it) } ?: 0
+            var toGo: Int = soFarInt?.let { planInt?.minus(it) } ?: 0
+            if(toGo<0){
+                toGo = 0
+            }
+            if(planInt!=null)
+            goal = planInt!!
             val str = "Steps until goal: " + toGo
 
             goalTextHandler?.text = "Your goal today: " + strIntGoal?.toInt() + " steps"

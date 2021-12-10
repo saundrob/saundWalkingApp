@@ -23,12 +23,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/dailyStatsTxt"
+        android:id="@+id/sessionStatsTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:text="Here's what you did today!"
+        android:text="Here's your session stats!"
         android:textAlignment="center"
         android:textColor="#4CAF50"
         android:textSize="18sp"
@@ -89,7 +89,7 @@
         android:textSize="18sp"
         android:typeface="monospace"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dailyStatsTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/sessionStatsTxt" />
 
     <TextView
         android:id="@+id/caloriesToday"
@@ -122,8 +122,8 @@
     <FrameLayout
         android:id="@+id/goalTxtContainer"
         android:layout_width="380dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="500dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="415dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

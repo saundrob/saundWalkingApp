@@ -94,7 +94,7 @@ class goalFragment : Fragment(), View.OnClickListener {
             val goalOkay = goalTyped?.text
             if((goalOkay).toString().toInt() <= 10000000 && (goalOkay).toString().toInt() >= 1) {
                 //close old goal fragment and pass data to open a new one
-                (activity as MainActivity2).closeGoalTxtFragment()
+                //(activity as MainActivity2).closeGoalTxtFragment()
                 val str: String = goalOkay.toString()
                 communicator.passDataCom(str)
                 getActivity()?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit();

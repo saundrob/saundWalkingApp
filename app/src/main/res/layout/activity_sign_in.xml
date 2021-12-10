@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:context=".sign_in_activity">
 
     <RelativeLayout
         android:id="@+id/main_activity_view"
         android:layout_width="350dp"
         android:layout_height="600dp"
+        android:background="#000E01"
         android:paddingLeft="8dp"
         android:paddingTop="8dp"
         android:paddingRight="8dp"
@@ -24,6 +26,7 @@
             android:id="@+id/title_text_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#000E01"
             android:clickable="false" />
 
         <ScrollView
@@ -34,7 +37,8 @@
                 android:id="@+id/sample_logview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="vertical" />
+                android:scrollbars="vertical"
+                android:textColor="#4CAF50" />
         </ScrollView>
     </RelativeLayout>
 

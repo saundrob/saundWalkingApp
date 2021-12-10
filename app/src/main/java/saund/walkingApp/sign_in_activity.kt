@@ -177,14 +177,6 @@ class sign_in_activity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        if (id == R.id.action_read_data) {
-            fitSignIn(FitActionRequestCode.READ_DATA)
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
     /** Initializes a custom log class that outputs both to in-app targets and logcat.  */
     private fun initializeLogging() {
@@ -198,7 +190,6 @@ class sign_in_activity : AppCompatActivity() {
         // On screen logging via a customized TextView.
         val logView = findViewById<View>(R.id.sample_logview) as LogView
         TextViewCompat.setTextAppearance(logView, R.style.Log)
-        logView.setBackgroundColor(Color.WHITE)
         msgFilter.next = logView
         Log.i(TAG, "Ready")
     }
